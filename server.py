@@ -20,7 +20,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
     def mirror(self):
         self.send_response(200)
-        self.send_header('Set-Cookie', f"session={uuid4()}; SameSite=Lax;")
+        if self.headers.get('cookie') == None or "session=" not in self.headers.get('cookie'):
+            self.send_header('Set-Cookie', f"session={uuid4()}; SameSite=Lax;")
         self.end_headers()
         self.wfile.write(b'\n==> Request line:\n')
         self.wfile.write(bytes(self.requestline + '\n', 'UTF-8'))            

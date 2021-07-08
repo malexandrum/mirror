@@ -1,5 +1,5 @@
 # Simple mirror api 
-Responds with request line, request method and body as output.
+Responds with request line, request headers and body as output.
 Useful for seeing what client applications send
 
 ## Requirements
